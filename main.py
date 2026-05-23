@@ -4,7 +4,7 @@ import asyncio
 import os
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-OWNER_ID = int(os.getenv("OWNER_ID"))
+OWNER_IDS = [int(x) for x in os.getenv("OWNER_IDS").split(",")]
 
 bot = Bot(BOT_TOKEN)
 dp = Dispatcher()
@@ -21,7 +21,8 @@ async def join_request(event: ChatJoinRequest):
         f"Username: @{user.username if user.username else 'нет'}"
     )
 
-    await bot.send_message(OWNER_ID, text)
+    for owner_id in OWNER_IDS:
+    await bot.send_message(owner_id, text)
 
 
 async def main():

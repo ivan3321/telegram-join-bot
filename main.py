@@ -18,7 +18,7 @@ async def join_request(event: ChatJoinRequest):
         f"Новая заявка\n\n"
         f"Имя: {user.full_name}\n"
         f"ID: {user.id}\n"
-        f"Username: @{user.username}"
+        f"Username: @{user.username if user.username else 'нет'}"
     )
 
     await bot.send_message(OWNER_ID, text)
